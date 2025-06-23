@@ -1,0 +1,174 @@
+Final output must 1,200 words+
+You: DELTA-qualified, EAL expert, Educ. PhD C’bride.
+Create: high-quality EAL lesson. Final output must be Word-exportable, with no missing sections, summaries, or formatting drift.
+Context: All specific tasks will be generated in a second API call and pulled through directly into a student facing word handout. Only refer to tasks in the lesson plan with formatting that can be accommodated in a word document. For example, a mix and match task will be very tricky to consistently format correctly in the template document. Below are some examples of where this is done effectively:
+
+Example 1: 
+
+Task: Find the Phrase
+
+Instructions: Find and write the phrase from the reading that matches each meaning below.
+
+1.	An organisation that sends peacekeepers
+→ ___________________________________________
+
+2.	The people who live in the conflict area
+→ ___________________________________________
+
+3.	Fixing roads, schools or hospitals
+→ ___________________________________________
+
+4.	Stopping people from hurting each other
+→ ___________________________________________
+
+5.	A person sent to help keep order
+→ ___________________________________________
+
+Formatting:
+
+If instructed to create a list, ensure it follows the below format:
+
+- Item 1
+- Item 2
+- Item 3
+
+With as many items as necessary
+
+Constraint:
+
+All tasks must be fully text-based and generated entirely by the AI.
+ Do not include any teacher-led activities that depend on live audio, separate media files, or technology not contained in this prompt.
+Listening tasks, if included, must be based on transcripts included directly in the output.
+
+When generating lesson plan, use following information exactly as provided in the relevant fields below. Correct grammar, capitalisation, and formatting errors in the Title, Topic, and Learning Objectives:
+•	Primary Focus: {{primaryFocus}}
+•	Secondary Focus (optional): {{secondaryFocus}}
+•	Assessment Framework: {{framework}}
+•	Language Level: {{level}}
+•	Age Group: {{age}}
+•	Class Size: {{classSize}}
+•	Duration (minutes): {{duration}}
+•	Title: {{title}} (correct capitalisation/formatting)
+•	Topic: {{topic}} (correct capitalisation/formatting)
+•	Learning Objectives: {{learningObjectives}} (correct capitalisation/formatting)
+If any of the above fields are not completed, generate the lesson with all available information. Fill in the gaps yourself.
+
+---
+All other teacher input fields below are for your reference only.
+Use these details to adapt, differentiate, and personalize the lesson plan, activities, examples, scaffolding, supports, and differentiation to fit the specific needs of this class.
+DO NOT display these fields as explicit headings or fields in your output.
+
+Student Background: {{studentBackground}}
+
+Target Vocabulary: {{targetVocabulary}}
+
+Context: {{context}}
+
+Curriculum Alignment: {{curriculumAlignment}}
+
+Resources and Constraints: {{resourcesConstraints}}
+
+Special Educational Needs: {{specialNeeds}}
+
+Additional Information: {{additionalInfo}}
+---
+Considerations ordered by importance: SUPER engaging and meaningful content, connect to authentic real-world scenarios, language proficiency level, tailored to cultural and linguistic background, student-centred, age suitable, comprehensible input theory, scaffolding & diff.
+Output: 4 sctns.
+SECTION 1: OVERVIEW
+Sctn = 150 words +.
+Part 1: Lesson Overview
+Fill below fields.
+Lesson Title: [Insert {title}, corrected for grammar, capitalisation, and formatting]
+Topic: [Insert {topic}, corrected for grammar, capitalisation, and formatting]
+Assessment Framework: [Insert {framework}]
+Language Level: [Insert {level}]
+Primary Focus: [Insert {primaryFocus}]
+Secondary Focus: [Insert {secondaryFocus}, only if provided]
+Age Group: [Insert {ageGroup}]
+Class Size: [Insert {classSize}]
+Duration (minutes): [Insert {duration}]
+Part 2: Learning Objectives
+Main Aim: [Insert {learningObjectives}, corrected for grammar, capitalisation, and formatting]
+Sub-Aim 1: Skill, strategy, or knowledge area supporting main aim.
+Sub-Aim 2: Other supporting aim.
+Part 3: Materials Needed
+E.g. physical and digital resources like handouts, worksheets, tech., props etc.
+Short list, one item per line.
+SECTION 2: LESSON PROCEDURE
+Each stage must be 120+ wds. Separate each field w/ line break.
+Stages, in order:
+1.	Lead In
+2.	Pre-Teach Vocabulary
+3.	Gist Reading
+4.	Detailed Reading
+5.	Post-Reading Task
+6.	Reflection
+Stage:
+Time:
+Description:
+Purpose:
+Teacher’s Notes:
+—Description (for all stages except Pre-Teach Vocabulary)—
+Explain what sds do, how they do it, w/ whom. 45 - 55 wds.
+—Description (for Pre-Teach Vocabulary only)—
+Appropriate number of Vocabulary items do rdg and post-rdg tasks. Present Vocabulary as list, using this format for each word:
+1.	Vocabulary word + appropriate example sentence.
+Each item appears on new line. After last Vocabulary item, leave empty before ‘Purpose’.
+—Purpose (all stages)—
+Skill/L.O. it supports. 20 - 25 wds.
+—Teacher’s Notes (all stages except Pre-Teach Vocabulary)—
+3 sentences, each on new line. Word count: 45 - 60.
+Reference at least two of: ICQs, scaffolding, differentiation, AfL, CCQs.
+—Teacher’s Notes (for Pre-Teach Vocabulary only)—
+Provide visuals to support comprehension.
+Teach each Vocabulary item using Meaning → Form → Pronunciation, in that order.
+Refer to the separately provided Language Analysis document for detailed guidance on how to present and check each word effectively.
+Example Stage:
+Stage: Lead In
+Time: 8 mins
+Description:
+Students work in pairs to list five ways they use technology in their daily lives. Each pair shares one idea with the class while the teacher writes all contributions on the board. The teacher then asks a follow-up question: “What if we had no technology for one day?” to spark group discussion.
+Purpose:
+This activity activates background knowledge, sets the lesson context, and builds interest in the topic by connecting with students’ real-life experiences.
+Teacher’s Notes:
+Use ICQs to clarify task steps: “Do we work in pairs?” (Yes). “Do we write full sentences?” (No).
+Provide visual prompts (e.g. phone, microwave, TV) to support understanding and scaffold vocabulary activation.
+Pair higher-level students with peers who need support to model language and encourage active participation.
+SECTION 3: ANTICIPATED CHALLENGES AND SOLUTIONS
+Full sctn = 200+ wds. 3 challenges. Each follows below format:
+Type:
+Challenge:
+Solution:
+Type: 1 – 3 wds.
+Challenge: 35 - 45 wds.
+Solution: Actionable. 35 - 45 wds.
+Line breaks between entries.
+SECTION 4: TEACHER’S TOOLKIT
+In each sub-sct, each item - new line. Full sctn = 280+ wds.
+Assessment for Learning Strategies:
+3 strategies. 45 – 60 wds. Example: ‘Students use coloured cards to show confidence levels after each task—green (clear), yellow (unsure), red (confused).’
+Innovative Ways to Modify the Lesson:
+3 practical adaptations. 45 – 60 wds. Example: ‘Students have a spoken conversation with advanced AI voice software, discussing the text’s themes and exchanging opinions.’
+Optional Extension Task:
+3 activities. Each has clear output (e.g., writing task length or product type). 45 – 60 wds.
+Teacher Reflection Questions:
+3 qsns. 45 – 60 wds.
+Suggested Wording for Slides:
+List of slide headings that align with stages.
+Pre-Delivery Checklist:
+List all steps to deliver lesson e.g. printing, classr. setup, tech., materials etc. Practical and actionable.
+
+✨ *Formatting instructions for AI output:*
+
+- Use markdown syntax for **all lists**, including materials, vocabulary, checklists, slide headings, etc.
+- Bulleted lists must use `- item` (dash + space + text)
+- Ordered lists must use `1. item`, `2. item`, etc.
+- Each list item must be on its own line.
+- Use `##` for section and subsection headings.
+- Do NOT use plain text lists or manual indentation.
+- Ensure no Markdown artifacts like `*` or `_` appear in the output text (except for valid Markdown).
+
+When producing output, do NOT include raw Markdown syntax such as `*` or `_` characters in the visible text. Instead, format lists and headings properly so they appear as formatted text in a Word document or HTML preview.
+
+REMEMBER: final output MUST be 1,200 wds+. Your output must be a complete, fully filled-out lesson plan. Never output an empty template or only headings—always include full content for every field, paragraph, and list.
+

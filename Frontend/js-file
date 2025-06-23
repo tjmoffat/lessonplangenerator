@@ -1,0 +1,128 @@
+document.addEventListener('DOMContentLoaded', function() {
+            function updateCharCounterColor(current, max, counterElement) {
+                if (current > max * 0.9) { counterElement.style.color = '#d93025'; }
+                else if (current > max * 0.75) { counterElement.style.color = '#f28b00'; }
+                else { counterElement.style.color = '#5f6368'; }
+            }
+            document.querySelectorAll('input[maxlength], textarea[maxlength]').forEach(input => {
+                const counter = input.nextElementSibling;
+                if (counter && counter.classList.contains('char-counter')) {
+                    const max = parseInt(input.getAttribute('maxlength'), 10);
+                    if (input.value.length > max) input.value = input.value.substring(0, max);
+                    const current = input.value.length;
+                    counter.textContent = `${current}/${max} characters`;
+                    updateCharCounterColor(current, max, counter);
+                    input.addEventListener('input', () => {
+                        const current = input.value.length;
+                        counter.textContent = `${current}/${max} characters`;
+                        updateCharCounterColor(current, max, counter);
+                    });
+                }
+            });
+            function toggleMoreOptions() {
+                const toggle = document.querySelector('.more-options-toggle');
+                const content = document.getElementById('moreOptionsContent');
+                if (!toggle || !content) return;
+                toggle.classList.toggle('expanded');
+                const isExpanded = content.classList.toggle('show');
+                content.style.display = isExpanded ? 'block' : 'none';
+            }
+            const toggleButton = document.querySelector('.more-options-toggle');
+            if (toggleButton) toggleButton.addEventListener('click', toggleMoreOptions);
+            function updateLevelOptions() {
+                const levelSelect = document.getElementById('level');
+                const framework = frameworkSelect ? frameworkSelect.value : '';
+                if (!levelSelect) return;
+                levelSelect.innerHTML = '<option value="">Select level...</option>';
+                let options = [];
+                switch(framework) {
+                    case 'cefr':
+                    case 'cambridge':
+                    case 'ielts':
+                        options = [
+                            {value: 'a1', text: 'A1 (Beginner)'},
+                            {value: 'a2', text: 'A2 (Elementary)'},
+                            {value: 'b1', text: 'B1 (Intermediate)'},
+                            {value: 'b2', text: 'B2 (Upper-Intermediate)'},
+                            {value: 'c1', text: 'C1 (Advanced)'},
+                            {value: 'c2', text: 'C2 (Proficiency)'}
+                        ]; break;
+                    case 'igcse':
+                        options = [
+                            {value: 'year-9', text: 'Year 9'},
+                            {value: 'year-10', text: 'Year 10'},
+                            {value: 'year-11', text: 'Year 11'}
+                        ]; break;
+                    case 'ib':
+                        options = [
+                            {value: 'ib-sl', text: 'Standard Level'},
+                            {value: 'ib-hl', text: 'Higher Level'}
+                        ]; break;
+                    case 'toefl':
+                        options = [
+                            {value: 'toefl-basic', text: 'Basic (0-30)'},
+                            {value: 'toefl-intermediate', text: 'Intermediate (31-60)'},
+                            {value: 'toefl-advanced', text: 'Advanced (61-90)'},
+                            {value: 'toefl-expert', text: 'Expert (91-120)'}
+                        ]; break;
+                    default:
+                        options = [
+                            {value: 'beginner', text: 'Beginner'},
+                            {value: 'elementary', text: 'Elementary'},
+                            {value: 'intermediate', text: 'Intermediate'},
+                            {value: 'upper-intermediate', text: 'Upper-Intermediate'},
+                            {value: 'advanced', text: 'Advanced'}
+                        ];
+                }
+                options.forEach(option => {
+                    const optionElement = document.createElement('option');
+                    optionElement.value = option.value;
+                    optionElement.textContent = option.text;
+                    levelSelect.appendChild(optionElement);
+                });
+            }
+            const frameworkSelect = document.getElementById('framework');
+            if (frameworkSelect) {
+                frameworkSelect.addEventListener('change', updateLevelOptions);
+                updateLevelOptions.call(frameworkSelect);
+            }
+            document.getElementById('lessonForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                const spinner = document.getElementById('spinnerOverlay');
+                const outputBox = document.getElementById('lessonPlanOutput');
+                spinner.classList.add('active');
+                outputBox.style.display = "none";
+                outputBox.textContent = "";
+                const formData = new FormData(this);
+                const data = {};
+                for (let [key, value] of formData.entries()) {
+                    if (data[key]) {
+                        if (Array.isArray(data[key])) { data[key].push(value);}
+                        else { data[key] = [data[key], value]; }
+                    } else {
+                        data[key] = value;
+                    }
+                }
+                const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+                const learningSupport = [];
+                checkboxes.forEach(cb => learningSupport.push(cb.value));
+                data.learningSupport = learningSupport;
+                try {
+                    const response = await fetch('http://localhost:3000/generate-lesson', {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify(data)
+                    });
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    const result = await response.json();
+                    spinner.classList.remove('active');
+                    outputBox.style.display = "block";
+                    outputBox.textContent = result.lessonPlan;
+                } catch (err) {
+                    spinner.classList.remove('active');
+                    outputBox.style.display = "block";
+                    outputBox.textContent = "❌ Error generating lesson plan. Please try again later.";
+                    console.error(err);
+                }
+            });
+        });

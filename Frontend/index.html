@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EAL Lesson Generator</title>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>AI Lesson Lab</h1>
+      <p>Create professional, engaging lesson plans in seconds</p>
+    </div>
+    <div class="form-container">
+      <form id="lessonForm" autocomplete="off">
+        <!-- Essentials Section -->
+        <div class="section">
+          <h2 class="section-title">
+            <span class="section-logo">
+              <!-- Gear SVG -->
+              <svg width="32" height="32" fill="none" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="3" stroke="#176BFF" stroke-width="2"/>
+                <path stroke="#176BFF" stroke-width="2" d="M19.4 15a7 7 0 0 0 .1-1 7 7 0 0 0-.1-1l1.7-1.3a.5.5 0 0 0 .1-.7l-1.6-2.7a.5.5 0 0 0-.6-.2l-2 .8a7 7 0 0 0-1.7-1l-.3-2.1a.5.5 0 0 0-.5-.4h-3a.5.5 0 0 0-.5.4l-.3 2.1a7 7 0 0 0-1.7 1l-2-.8a.5.5 0 0 0-.6.2l-1.6 2.7a.5.5 0 0 0 .1.7L4.6 13a7 7 0 0 0-.1 2l-1.7 1.3a.5.5 0 0 0-.1.7l1.6 2.7c.1.2.3.3.6.2l2-.8a7 7 0 0 0 1.7 1l.3 2.1a.5.5 0 0 0 .5.4h3a.5.5 0 0 0 .5-.4l.3-2.1a7 7 0 0 0 1.7-1l2 .8c.3.1.5 0 .6-.2l1.6-2.7a.5.5 0 0 0-.1-.7L19.4 15z"/>
+              </svg>
+            </span>
+            Essentials
+          </h2>
+          <div class="form-grid">
+            <!-- Age Group -->
+            <div class="form-group">
+              <label for="age" class="required-label">Age Group <span class="required">*</span></label>
+              <select id="age" name="age" required>
+                <option value="">Select age group...</option>
+                <option value="5-7">Early Years (5–7)</option>
+                <option value="8-11">Primary (8–11)</option>
+                <option value="12-14">Lower Secondary (12–14)</option>
+                <option value="15-17">Upper Secondary (15–17)</option>
+                <option value="18+">Adults (18+)</option>
+              </select>
+            </div>
+            <!-- Class Size -->
+            <div class="form-group">
+              <label for="classSize" class="required-label">Class Size <span class="required">*</span></label>
+              <input type="number" id="classSize" name="classSize" min="1" max="50" required placeholder=""/>
+            </div>
+            <!-- Assessment Framework -->
+            <div class="form-group">
+              <label for="framework" class="required-label">Assessment Framework <span class="required">*</span></label>
+              <select id="framework" name="framework" required>
+                <option value="">Select or type...</option>
+                <option value="cefr">CEFR (Common European Framework)</option>
+                <option value="cambridge">Cambridge English</option>
+                <option value="ielts">IELTS</option>
+                <option value="igcse">IGCSE English</option>
+                <option value="ib">IB English (Language A & B)</option>
+                <option value="toefl">TOEFL Preparation</option>
+                <option value="other">Other</option>
+              </select>
+              <input type="text" id="customFramework" name="customFramework" placeholder="Type framework..." style="display:none; margin-top:4px;"/>
+            </div>
+            <!-- Language Level -->
+            <div class="form-group">
+              <label for="level" class="required-label">Language Level <span class="required">*</span></label>
+              <select id="level" name="level" required>
+                <option value="">Select level...</option>
+              </select>
+              <input type="text" id="customLevel" name="customLevel" placeholder="Type level..." style="display:none; margin-top:4px;"/>
+            </div>
+            <!-- Topic -->
+            <div class="form-group">
+              <label for="topic">Topic</label>
+              <input type="text" id="topic" name="topic" maxlength="100" placeholder="Travel and Transport, Family Relationships"/>
+              <div class="char-counter">0/100 characters</div>
+            </div>
+            <!-- Duration -->
+            <div class="form-group">
+              <label for="duration">Duration (Minutes)</label>
+              <input type="number" id="duration" name="duration" min="30" max="120" placeholder=""/>
+            </div>
+            <!-- Primary Focus -->
+            <div class="form-group">
+              <label for="primaryFocus">Primary Focus</label>
+              <select id="primaryFocus" name="primaryFocus">
+                <option value="">Select primary focus...</option>
+                <option value="reading">Reading</option>
+                <option value="writing">Writing</option>
+                <option value="listening">Listening</option>
+                <option value="speaking">Speaking</option>
+                <option value="grammar">Grammar</option>
+                <option value="vocabulary">Vocabulary</option>
+                <option value="pronunciation">Pronunciation</option>
+                <option value="functional">Functional Language</option>
+              </select>
+            </div>
+            <!-- Secondary Focus -->
+            <div class="form-group">
+              <label for="secondaryFocus">Secondary Focus</label>
+              <select id="secondaryFocus" name="secondaryFocus">
+                <option value="">Select secondary focus...</option>
+                <option value="reading">Reading</option>
+                <option value="writing">Writing</option>
+                <option value="listening">Listening</option>
+                <option value="speaking">Speaking</option>
+                <option value="grammar">Grammar</option>
+                <option value="vocabulary">Vocabulary</option>
+                <option value="pronunciation">Pronunciation</option>
+                <option value="functional">Functional Language</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Content Focus (Collapsible) -->
+        <button type="button" class="collapse-toggle" aria-expanded="false">
+          <span class="section-logo">
+            <!-- Book SVG -->
+            <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="16" rx="2" stroke="#151A26" stroke-width="2"/><path d="M5 8h14" stroke="#151A26" stroke-width="2"/></svg>
+          </span>
+          <span>Content Focus</span>
+          <span class="toggle-icon">&#9654;</span>
+        </button>
+        <div class="collapsible-content">
+          <div class="section">
+            <div class="form-grid">
+              <!-- Learning Objectives -->
+              <div class="form-group form-group-wide">
+                <label for="learningObjectives">Learning Objectives</label>
+                <textarea id="learningObjectives" name="learningObjectives" maxlength="300" placeholder="Students will be able to describe future plans using 'going to'"></textarea>
+                <div class="char-counter">0/300 characters</div>
+              </div>
+              <!-- Target Vocabulary -->
+              <div class="form-group form-group-wide">
+                <label for="targetVocabulary">Target Vocabulary</label>
+                <textarea id="targetVocabulary" name="targetVocabulary" maxlength="300" placeholder="Airport, boarding pass, departure, arrival, luggage"></textarea>
+                <div class="char-counter">0/300 characters</div>
+              </div>
+              <!-- Student Background -->
+              <div class="form-group form-group-wide">
+                <label for="studentBackground">Student Background</label>
+                <textarea id="studentBackground" name="studentBackground" maxlength="300" placeholder="All students speak Mandarin as their first language"></textarea>
+                <div class="char-counter">0/300 characters</div>
+              </div>
+              <!-- Context -->
+              <div class="form-group form-group-wide">
+                <label for="context">Context</label>
+                <textarea id="context" name="context" maxlength="300" placeholder="International school, Exam prep"></textarea>
+                <div class="char-counter">0/300 characters</div>
+              </div>
+              <!-- Hidden Purpose Field -->
+              <input type="hidden" id="purpose" name="purpose" value="" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Customisation (Collapsible) -->
+        <button type="button" class="collapse-toggle" aria-expanded="false">
+          <span class="section-logo">
+            <!-- Target SVG -->
+            <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke="#176BFF" stroke-width="2"/><circle cx="12" cy="12" r="5" stroke="#176BFF" stroke-width="2"/><circle cx="12" cy="12" r="2" fill="#176BFF"/></svg>
+          </span>
+          <span>Customisation</span>
+          <span class="toggle-icon">&#9654;</span>
+        </button>
+        <div class="collapsible-content">
+          <div class="section">
+            <div class="form-grid">
+              <!-- Curriculum Alignment -->
+              <div class="form-group form-group-wide">
+                <label for="curriculumAlignment">Curriculum Alignment</label>
+                <textarea id="curriculumAlignment" name="curriculumAlignment" maxlength="300" placeholder="Mapped to CEFR B1, aligns with school curriculum"></textarea>
+                <div class="char-counter">0/300 characters</div>
+              </div>
+              <!-- Resources and Constraints -->
+              <div class="form-group form-group-wide">
+                <label for="resourcesConstraints">Resources and Constraints</label>
+                <textarea id="resourcesConstraints" name="resourcesConstraints" maxlength="300" placeholder="Interactive whiteboard, tablets, no printer access, limited internet"></textarea>
+                <div class="char-counter">0/300 characters</div>
+              </div>
+              <!-- Special Educational Needs -->
+              <div class="form-group form-group-wide">
+                <label for="specialNeeds">Special Educational Needs</label>
+                <textarea id="specialNeeds" name="specialNeeds" maxlength="300" placeholder="Dyslexia accommodations, visual impairments, attention difficulties, etc."></textarea>
+                <div class="char-counter">0/300 characters</div>
+              </div>
+              <!-- Additional Information -->
+              <div class="form-group form-group-wide">
+                <label for="additionalInfo">Additional Information</label>
+                <textarea id="additionalInfo" name="additionalInfo" maxlength="500" placeholder="Classroom is shared with another teacher, some students may arrive late"></textarea>
+                <div class="char-counter">0/500 characters</div>
+              </div>
+            </div>
+            <!-- Optional hidden fields -->
+            <input type="hidden" id="assessmentField" name="assessmentField" value=""/>
+            <input type="file" id="fileUpload" name="fileUpload" style="display:none;"/>
+          </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="form-actions">
+          <button type="submit" class="generate-btn" id="generateBtn">
+            <span class="spinner" id="btnSpinner" style="display:none;"></span>
+            <span id="btnText">✨ Create Lesson</span>
+          </button>
+          <div id="generateMessage" class="generate-message" style="display:none;">Sit back and relax. Your lesson documents will be ready very soon</div>
+          <button type="button" class="save-btn" id="saveSelectionsBtn">💾 Save previous selections</button>
+        </div>
+      </form>
+    </div>
+<div id="spinnerOverlay" style="display:none;">Loading...</div>
+<div id="lessonPlanOutput" class="lesson-plan-output" style="display:none;"></div>
+  <script src="js/script.js"></script>
+</body>
+</html>

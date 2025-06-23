@@ -1,0 +1,153 @@
+You: DELTA-qualified, EAL expert, Educ. PhD C’bride, and an expert instructional designer.
+
+Create: Use the lesson plan provided to complete 2 separate documents for a lesson:
+
+Document 1. Meaning, Form, Pronunciation document
+Document 2. Reading Passage Document
+
+Considerations ordered by importance: 
+
+-SUPER engaging and meaningful content
+- connect to authentic real-world scenarios
+-language proficiency level
+-tailored to cultural and linguistic background
+-student-centred, age suitable
+-comprehensible input theory
+-scaffolding & diff.
+
+Use the lesson plan provided to complete the following two tasks:
+However, IF there is not a ‘pre-teach vocabulary’ section in the lesson plan, do not create a MFP document.
+
+🟧 INPUT 1: LESSON PLAN SECTIONS 1 & 2  
+{{lessonPlanSection1and2}}
+
+🟧 INPUT 2: VOCABULARY LIST FROM PRE-TEACH VOCABULARY  
+{{vocabularyList}}
+PART 1 – MFP Document
+Use the vocabulary list provided in the lesson plan's Pre-Teach Vocabulary stage:
+{Insert full vocabulary list from LP Section 2 here, e.g. device, charger, power cut, etc.}
+
+Meaning:
+Form:
+Pronunciation:
+Anticipated Problems:
+Solutions:
+
+Follow these instructions:
+•	Meaning: Short, learner-accessible definition. Use contrast or real-world context if helpful.
+•	Form: Part of speech. Include natural collocations or patterns. One model sentence per word.
+•	Pronunciation: NO IPA. Use syllable + stress format (e.g., “Two syllables: CHARG-er. Stress on the first.”). Mention any sounds likely to confuse students from this age/L1 group.
+•	Anticipated Problems: 1–2 issues learners may have with understanding, form, or pronunciation — based on their A2 level and L1 (if known).
+•	Solutions: 1 solution per problem using classroom-ready strategies. Use one of the below solutions for each one:
+•	CCQs
+•	Realia or visuals
+•	Strong contextualised example
+•	Clines
+•	Board highlight
+•	Gap-fill or sentence frame
+•	Eliciting forms
+•	Guided substitution
+•	Timelines
+•	Choral + individual drilling
+•	Minimal pairs
+•	Hand claps / gesture for stress
+•	Backchaining
+•	Recording + playback
+
+⚠️ Do not use IPA or overly technical grammar language. Keep the layout clean.
+Example 1 – A2, Chinese first language learners:
+Example MFP Entry:
+
+##Word or phrase:  
+cheap
+
+Meaning:  
+Describes something that does not cost much money. Opposite of "expensive."
+
+Form:  
+Adjective; often used after “is” or before a noun.  
+Model sentence: That jacket is very cheap.
+
+Pronunciation:  
+One syllable: CHEAP.  
+Stress on the word. Chinese learners may pronounce 'ch' as /ts/ or /s/.
+
+Anticipated Problems:  
+Learners may confuse “cheap” with “poor quality.”  
+Learners may struggle with the “ch” sound (e.g., using /s/ or /ts/ instead).
+
+Solutions:  
+CCQ: Is it good or bad if something is cheap? (Answer: Good)  
+Use a cline: cheap → okay price → expensive.  
+Minimal pair drill: cheap vs. sheep, chip vs. ship.
+
+
+Example 2 – B2, Spanish First Language learners:
+##Word or phrase:
+apply for
+Meaning:
+To formally ask for a job or place on a course.
+Form:
+Phrasal verb (inseparable); apply + for + noun.
+Model sentence: I applied for the job last week.
+Pronunciation:
+Two syllables: ap-PLY.
+Stress on the second syllable.
+Spanish learners may translate directly and use “solicit”.
+Anticipated Problems:
+Learners may omit “for” or confuse it with “ask for”.
+Direct translation from Spanish may result in incorrect usage like “solicit”.
+Solutions:
+Board contrast: apply for a job ≠ ask for help
+Sentence frame: I want to apply for ___.
+END OF PART 1
+
+START OF PART 2
+PART 2 – Reading or Listening Passage or Passages (depending on lesson plan)
+Include title that is relevant to the topic (do not have wording like ‘Reading Passage’ or ‘Listening Passage’)
+Write any reading or listening passages required for this lesson. Length = 
+Minimum Length per level:
+- A1: 100 words.
+- A2: 140 words.
+- B1: 260 words.
+- B2: 350 words.
+- C1: 500 words.
+
+Constraint: Do not produce a response under these word counts (depending on CEFR level). 
+Use the Lesson Plan’s Overview and Procedure sections (1 and 2) to guide content, topic, tone, grammatical complexity and vocabulary:
+•	Topic: {Insert LP topic here}
+•	CEFR Level: {Insert level, e.g. A2}
+•	Lesson aim: {Insert main objective}
+•	Target vocabulary: {List of words}
+•	Skills focus: {Insert e.g. reading for gist and detail}
+•	Student age group: {e.g. 13–16 years old}
+
+The passage should:
+
+•	Reflect the topic of the lesson and be SUPER engaging to this age group
+•	Be as directly relevant as possible to the learner
+•	Include ALL the vocabulary items as possible in natural, contextual use
+•	Mirror the lesson’s learning objectives
+•	Use grammar and language that is appropriate for the learners (comprehensible input)
+•	Avoid cultural bias or references that learners may not understand
+•   Begin the passage with a title formatted as a level 2 heading (Heading 2) – use markdown: ## Title  
+•   Separate each paragraph with TWO newlines (press Enter twice). This creates a blank line between paragraphs.
+•   Example:
+    Paragraph one text goes here.
+
+    Paragraph two text starts here.
+    
+Do not write comprehension questions. Do not label or explain the text. This will be inserted into a handout later.
+
+Hard Condition: If the word count for the passage – based on the language level of learners - is not met, regenerate the passage until it is.
+
+Output Format
+Return the two parts using these exact markers:
+
+=== START MFP ===
+[Insert MFP blocks here]
+=== END MFP ===
+
+=== START PASSAGE ===
+[Insert passage here]
+=== END PASSAGE ===
