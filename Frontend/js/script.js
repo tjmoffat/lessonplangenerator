@@ -135,13 +135,20 @@ document.addEventListener('DOMContentLoaded', function() {
     checkboxes.forEach(cb => learningSupport.push(cb.value));
     data.learningSupport = learningSupport;
     try {
-        const response = await fetch('https://lessonplangenerator.onrender.com/generate-lesson', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(data)
+        const BACKEND_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:3000"
+    : "https://lessonplangenerator.onrender.com";
+
+      const response = await fetch(`${BACKEND_URL}/generate-lesson`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
         });
-        if (!response.ok) throw new Error('Network response was not ok');
-        const result = await response.json();
+
+      if (!response.ok) throw new Error('Network response was not ok');
+      const result = await response.json();
+
 
         // Save all outputs to localStorage for the preview page
         localStorage.setItem('lessonOutputs', JSON.stringify(result));
@@ -154,5 +161,15 @@ document.addEventListener('DOMContentLoaded', function() {
         alert("❌ Error generating lesson plan. Please try again later.");
         console.error(err);
     }
+});
+  // Collapsible section toggles
+ document.querySelectorAll('.collapse-toggle').forEach(button => {
+  button.addEventListener('click', () => {
+    button.classList.toggle('active');
+    const content = button.nextElementSibling;
+    if (content && content.classList.contains('collapsible-content')) {
+      content.style.display = content.style.display === 'block' ? 'none' : 'block';
+    }
+  });
 });
 });
