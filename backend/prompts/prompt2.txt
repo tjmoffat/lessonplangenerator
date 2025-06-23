@@ -54,11 +54,11 @@ Follow these instructions:
 •	Backchaining
 •	Recording + playback
 
-⚠️ Do not use IPA or overly technical grammar language. Keep the layout clean.
+⚠️ Do not use IPA or overly technical grammar language. Keep the layout clean.  
 Example 1 – A2, Chinese first language learners:
 Example MFP Entry:
 
-##Word or phrase:  
+## Word or phrase:  
 cheap
 
 Meaning:  
@@ -83,7 +83,7 @@ Minimal pair drill: cheap vs. sheep, chip vs. ship.
 
 
 Example 2 – B2, Spanish First Language learners:
-##Word or phrase:
+## Word or phrase:
 apply for
 Meaning:
 To formally ask for a job or place on a course.
@@ -107,11 +107,11 @@ PART 2 – Reading or Listening Passage or Passages (depending on lesson plan)
 Include title that is relevant to the topic (do not have wording like ‘Reading Passage’ or ‘Listening Passage’)
 Write any reading or listening passages required for this lesson. Length = 
 Minimum Length per level:
-- A1: 100 words.
-- A2: 140 words.
-- B1: 260 words.
-- B2: 350 words.
-- C1: 500 words.
+- A1: 150 words.
+- A2: 240 words.
+- B1: 350 words.
+- B2: 450 words.
+- C1: 600 words.
 
 Constraint: Do not produce a response under these word counts (depending on CEFR level). 
 Use the Lesson Plan’s Overview and Procedure sections (1 and 2) to guide content, topic, tone, grammatical complexity and vocabulary:

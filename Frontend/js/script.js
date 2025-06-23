@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function() {
     checkboxes.forEach(cb => learningSupport.push(cb.value));
     data.learningSupport = learningSupport;
     try {
-        const response = await fetch('http://localhost:3000/generate-lesson', {
+        const response = await fetch('https://lessonplangenerator.onrender.com/generate-lesson', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(data)
