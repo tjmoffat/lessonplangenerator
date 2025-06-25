@@ -13,6 +13,26 @@ const multer = require('multer');
 const upload = multer();
 
 const app = express();
+const cors = require("cors");
+
+const allowedOrigins = [
+  "https://lessonpilotai.com",
+  "http://lessonpilotai.com", // for non-HTTPS testing
+  "https://www.lessonpilotai.com",
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like curl or Postman)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      return callback(new Error("CORS not allowed for this origin"));
+    }
+  }
+}));
+
 const PORT = process.env.PORT || 3000;
 
 const server = http.createServer(app);
