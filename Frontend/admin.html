@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Prompt Editor</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 2rem;
+    }
+    input, textarea, button {
+      font-size: 1rem;
+    }
+    #prompt-list button {
+      display: block;
+      margin: 0.5rem 0;
+      padding: 0.5rem;
+      width: 100%;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <h1>Prompt Admin</h1>
+
+  <label for="secret">Admin Secret:</label>
+  <input type="password" id="secret" placeholder="Enter admin key" />
+  <button onclick="loadPrompts()">Login</button>
+
+  <div id="search-section" style="margin-top: 2rem; display:none;">
+    <input type="text" id="search" placeholder="Search by label or tag..." style="width: 100%;" />
+    <div id="prompt-list"></div>
+  </div>
+
+  <!-- ✅ This line is CRITICAL — it loads the JS -->
+  <script src="js/admin.js"></script>
+</body>
+</html>

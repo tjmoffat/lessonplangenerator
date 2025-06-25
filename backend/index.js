@@ -4,6 +4,8 @@ const cors = require('cors'); // Middleware for enabling Cross-Origin Resource S
 const http = require('http'); // <-- Needed for custom timeout
 const { loadPrompt } = require('./utils/promptLoader'); // For loading prompt files
 const PPTXGenJS = require("pptxgenjs");
+const path = require("path");
+const fs = require("fs"); // <-- Needed for reading and writing files
 
 const OpenAI = require('openai'); // OpenAI API client library
 const { Document, Packer, Paragraph, HeadingLevel } = require("docx");
@@ -142,6 +144,63 @@ app.get('/test-prompt', (req, res) => {
   res.send(`<pre>${promptText}</pre>`);
 });
 
+app.get("/admin/prompts", (req, res) => {
+  const adminSecret = req.headers["x-admin-secret"];
+  console.log("🔐 Incoming admin secret:", adminSecret);
+  console.log("✅ ENV ADMIN_SECRET:", process.env.ADMIN_SECRET);
+
+  if (adminSecret !== process.env.ADMIN_SECRET) {
+    console.log("❌ Unauthorized access attempt");
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+
+  // Log the current __dirname and cwd
+  console.log("__dirname is:", __dirname);
+  console.log("process.cwd() is:", process.cwd());
+
+  const metadataPath = path.join(__dirname, "prompts", "metadata.json");
+  console.log("📄 Trying to read:", metadataPath);
+
+  try {
+    const data = fs.readFileSync(metadataPath, "utf-8");
+    const metadata = JSON.parse(data);
+    console.log("✅ Loaded metadata:", metadata.length, "prompts");
+    return res.json(metadata);
+  } catch (err) {
+    console.log("❌ Error reading metadata:", err.message);
+    console.log("❌ Error stack:", err.stack);
+    return res.status(500).json({ error: "Failed to load prompt metadata" });
+  }
+});
+
+// GET one prompt file's content
+app.get("/admin/prompt", (req, res) => {
+  const adminSecret = req.headers["x-admin-secret"];
+  console.log("🔐 Incoming admin secret:", adminSecret);
+  console.log("✅ ENV ADMIN_SECRET:", process.env.ADMIN_SECRET);
+  
+  if (adminSecret !== process.env.ADMIN_SECRET) {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+
+  const fileName = req.query.name;
+  if (!fileName) {
+    return res.status(400).json({ error: "Missing prompt file name" });
+  }
+
+  const filePath = path.join(__dirname, "prompts", fileName);
+
+  if (!fs.existsSync(filePath)) {
+    return res.status(404).json({ error: "Prompt file not found" });
+  }
+
+  try {
+    const content = fs.readFileSync(filePath, "utf-8");
+    return res.json({ content });
+  } catch (err) {
+    return res.status(500).json({ error: "Failed to read prompt file" });
+  }
+});
 // ------ EXPORT DOCX ENDPOINT -------
 app.post("/export-docx", express.json(), async (req, res) => {
   try {

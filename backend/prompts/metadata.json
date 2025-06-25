@@ -1,0 +1,26 @@
+[
+  {
+    "filename": "prompt1.txt",
+    "label": "Lesson Plan Prompt",
+    "tags": ["lesson", "planning", "call1"],
+    "component": "call1"
+  },
+  {
+    "filename": "prompt2.txt",
+    "label": "MFP + Reading Prompt",
+    "tags": ["mfp", "reading", "call2"],
+    "component": "call2"
+  },
+  {
+    "filename": "prompt3.txt",
+    "label": "Student Handout Prompt",
+    "tags": ["handout", "call3"],
+    "component": "call3"
+  },
+  {
+    "filename": "prompt4.txt",
+    "label": "Slide Deck Prompt",
+    "tags": ["slides", "call4"],
+    "component": "call4"
+  }
+]
