@@ -3,36 +3,99 @@
 <head>
   <meta charset="UTF-8" />
   <title>Admin Prompt Editor</title>
+  <link rel="stylesheet" href="style.css" />
   <style>
-    body {
-      font-family: sans-serif;
-      margin: 2rem;
+    .inline-editor {
+      display: flex;
+      gap: 32px;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
     }
-    input, textarea, button {
+    .editor-left {
+      flex: 2;
+      min-width: 480px;
+    }
+    .editor-right {
+      flex: 1;
+      min-width: 280px;
+    }
+    .tag-section {
+      margin-bottom: 1.5rem;
+    }
+    .tag-section h3 {
+      margin: 0 0 0.5rem 0;
       font-size: 1rem;
+      color: #333;
     }
-    #prompt-list button {
+    .tag-checkbox {
+      margin: 3px 0;
       display: block;
-      margin: 0.5rem 0;
-      padding: 0.5rem;
+      font-size: 0.95rem;
+    }
+    .version-list {
+      margin-top: 1.5rem;
+    }
+    .version-list select {
       width: 100%;
-      text-align: left;
+      padding: 0.6rem;
+      font-size: 0.95rem;
+    }
+    #login-panel {
+      max-width: 420px;
+      margin: 5rem auto;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 14px rgba(0, 0, 0, 0.06);
+      background: #fff;
+      text-align: center;
     }
   </style>
 </head>
+
 <body>
-  <h1>Prompt Admin</h1>
-
-  <label for="secret">Admin Secret:</label>
-  <input type="password" id="secret" placeholder="Enter admin key" />
-  <button onclick="loadPrompts()">Login</button>
-
-  <div id="search-section" style="margin-top: 2rem; display:none;">
-    <input type="text" id="search" placeholder="Search by label or tag..." style="width: 100%;" />
-    <div id="prompt-list"></div>
+  <div id="login-panel">
+    <h2>Admin Login</h2>
+    <p>Please enter your admin secret to access prompt management.</p>
+    <input type="password" id="secret" placeholder="Admin secret" style="width: 100%; padding: 0.75rem; margin: 1rem 0;" />
+    <button id="login-btn" style="padding: 0.7rem 1.4rem; font-weight: bold;">Log In</button>
   </div>
 
-  <!-- ✅ This line is CRITICAL — it loads the JS -->
+  <div id="main-panel" style="display: none;">
+    <div class="container">
+      <div class="header">
+        <h1>Prompt Manager</h1>
+        <p>View, edit, and tag your prompt files. All changes are saved instantly and versioned safely.</p>
+      </div>
+
+      <input type="text" id="search" placeholder="Search prompts by label, filename, or tag..." style="width: 100%; padding: 0.8rem; margin: 0 0 2rem 0; font-size: 1.05rem;" />
+
+      <!-- Add New Prompt Button and Modal -->
+<button id="add-prompt-btn" style="margin-bottom:1.2rem;">+ Add New Prompt</button>
+
+<div id="addPromptModal" style="display:none; position:fixed; left:0; top:0; width:100vw; height:100vh; background:rgba(0,0,0,0.28); z-index:2000; align-items:center; justify-content:center;">
+  <div style="background:#fff; padding:2.3rem 2rem 1.2rem 2rem; border-radius:13px; max-width:360px; width:92vw; box-shadow:0 3px 16px rgba(23,107,255,0.16); margin:auto;">
+    <h3 style="margin-top:0;">Create New Prompt</h3>
+    <label>Prompt filename (.txt):<br>
+      <input type="text" id="new-prompt-filename" style="width:96%;" placeholder="myprompt1.txt">
+    </label><br>
+    <label>Prompt label/title:<br>
+      <input type="text" id="new-prompt-label" style="width:96%;" placeholder="Short name for this prompt">
+    </label><br>
+    <label>Component/Call:<br>
+      <input type="text" id="new-prompt-component" style="width:96%;" placeholder="call1">
+    </label><br>
+    <div style="margin-top:1.3em;">
+      <button id="submit-add-prompt" style="font-weight:bold; background:#176bff; color:#fff; padding:0.5em 1.1em; border-radius:7px; border:none;">Create</button>
+      <button id="cancel-add-prompt" style="margin-left:1.2em; background:#eee; color:#234; border-radius:7px; border:none; padding:0.5em 1.1em;">Cancel</button>
+      <span id="add-prompt-status" style="margin-left:1.5em; color:green;"></span>
+    </div>
+  </div>
+</div>
+
+      <div id="prompt-list"></div>
+    </div>
+  </div>
+
   <script src="js/admin.js"></script>
 </body>
 </html>

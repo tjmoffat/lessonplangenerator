@@ -44,7 +44,7 @@ With as many items as necessary
 Constraint:
 
 All tasks must be fully text-based and generated entirely by the AI.
-Do not include any teacher-led activities that depend on live audio, separate media files, or technology not contained in this prompt.
+ Do not include any teacher-led activities that depend on live audio, separate media files, or technology not contained in this prompt.
 Listening tasks, if included, must be based on transcripts included directly in the output.
 
 When generating lesson plan, use following information exactly as provided in the relevant fields below. Correct grammar, capitalisation, and formatting errors in the Title, Topic, and Learning Objectives:
@@ -191,4 +191,3 @@ List all steps to deliver lesson e.g. printing, classr. setup, tech., materials 
 When producing output, do NOT include raw Markdown syntax such as `*` or `_` characters in the visible text. Instead, format lists and headings properly so they appear as formatted text in a Word document or HTML preview.
 
 REMEMBER: final output MUST be 1,200 wds+. Your output must be a complete, fully filled-out lesson plan. Never output an empty template or only headings—always include full content for every field, paragraph, and list.
-

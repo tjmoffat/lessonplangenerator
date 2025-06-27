@@ -13,25 +13,29 @@ const multer = require('multer');
 const upload = multer();
 
 const app = express();
-const cors = require("cors");
 
 const allowedOrigins = [
   "https://lessonpilotai.com",
-  "http://lessonpilotai.com", // for non-HTTPS testing
+  "http://lessonpilotai.com",
   "https://www.lessonpilotai.com",
+  "http://localhost:51754",
+  "http://localhost:3000"
 ];
 
-app.use(cors({
+const corsOptions = {
   origin: function (origin, callback) {
-    // Allow requests with no origin (like curl or Postman)
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.includes(origin)) {
-      return callback(null, true);
-    } else {
-      return callback(new Error("CORS not allowed for this origin"));
-    }
+  console.log("🔎 CORS request from origin:", origin);
+  // Allow requests with no origin or from "null" (common in some tools or file:// access)
+  if (!origin || origin === 'null' || allowedOrigins.includes(origin)) {
+    return callback(null, true);
+  } else {
+    console.log("❌ CORS blocked:", origin);
+    return callback(new Error("CORS not allowed for this origin"));
   }
-}));
+}
+};
+
+app.use(cors(corsOptions));
 
 const PORT = process.env.PORT || 3000;
 
@@ -193,6 +197,40 @@ app.get("/admin/prompts", (req, res) => {
   }
 });
 
+app.get('/api/prompts', (req, res) => {
+  try {
+    const metadataPath = path.join(__dirname, 'prompts', 'metadata.json');
+    const data = fs.readFileSync(metadataPath, 'utf-8');
+    const metadata = JSON.parse(data);
+    // Respond with the entire metadata object
+    return res.json(metadata);
+  } catch (err) {
+    console.error("❌ Error reading metadata:", err.message);
+    return res.status(500).json({ error: "Failed to load prompt metadata" });
+  }
+});
+
+// --- GET: Fetch content for a specific version file (history preview) ---
+app.get('/api/prompts/history/:versionFile', (req, res) => {
+  const versionFile = req.params.versionFile;
+
+  // Security: Only allow .txt files, no path traversal
+  if (!/^[\w\-\.]+\.txt$/.test(versionFile)) {
+    return res.status(400).json({ error: "Invalid version file name." });
+  }
+  const historyPath = path.join(__dirname, 'prompts', 'history', versionFile);
+
+  if (!fs.existsSync(historyPath)) {
+    return res.status(404).json({ error: "Version file not found." });
+  }
+  try {
+    const content = fs.readFileSync(historyPath, 'utf-8');
+    return res.json({ content });
+  } catch (err) {
+    return res.status(500).json({ error: "Failed to read version file." });
+  }
+});
+
 // GET one prompt file's content
 app.get("/admin/prompt", (req, res) => {
   const adminSecret = req.headers["x-admin-secret"];
@@ -221,6 +259,203 @@ app.get("/admin/prompt", (req, res) => {
     return res.status(500).json({ error: "Failed to read prompt file" });
   }
 });
+
+// 🟦 Get one prompt file's content (NEW API ENDPOINT)
+app.get('/api/prompts/:filename', (req, res) => {
+  try {
+    const filename = req.params.filename;
+    // Basic filename validation to prevent path traversal
+    if (!/^[\w\-.]+\.txt$/.test(filename)) {
+      return res.status(400).json({ error: "Invalid filename." });
+    }
+    const filePath = path.join(__dirname, 'prompts', filename);
+    if (!fs.existsSync(filePath)) {
+      return res.status(404).json({ error: "Prompt file not found." });
+    }
+    const content = fs.readFileSync(filePath, 'utf-8');
+    return res.json({ content });
+  } catch (err) {
+    console.error("❌ Error reading prompt file:", err.message);
+    return res.status(500).json({ error: "Failed to read prompt file." });
+  }
+});
+
+// --- Create a new prompt file and metadata entry ---
+app.post('/api/prompts/:filename', express.json(), (req, res, next) => {
+  const filename = req.params.filename;
+  if (!/^[\w\-\.]+\.txt$/.test(filename)) {
+    return res.status(400).json({ error: "Invalid filename." });
+  }
+  const promptsDir = path.join(__dirname, 'prompts');
+  const filePath = path.join(promptsDir, filename);
+  const metadataPath = path.join(promptsDir, 'metadata.json');
+  const adminSecret = req.headers["x-admin-secret"];
+  if (adminSecret !== process.env.ADMIN_SECRET) {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+
+  // Only allow creation if file doesn't exist
+  if (fs.existsSync(filePath)) {
+    // If the file already exists, skip to the next route for updating
+    return next();
+  }
+
+  // Write the new prompt file (empty or with provided content)
+  fs.writeFileSync(filePath, req.body.content || '', 'utf-8');
+
+  // Update metadata.json
+  let metadata = {};
+  if (fs.existsSync(metadataPath)) {
+    metadata = JSON.parse(fs.readFileSync(metadataPath, 'utf-8'));
+  }
+  metadata[filename] = {
+    label: req.body.label || filename,
+    tags: req.body.tags || [],
+    component: req.body.component || "call1",
+    history: []
+  };
+  fs.writeFileSync(metadataPath, JSON.stringify(metadata, null, 2), 'utf-8');
+
+  return res.json({ success: true });
+});
+
+// 🟦 Save (update) prompt content with version backup
+app.post('/api/prompts/:filename', express.json(), (req, res) => {
+  try {
+    const filename = req.params.filename;
+    const newContent = req.body.content;
+
+    // Basic filename validation
+    if (!/^[\w\-.]+\.txt$/.test(filename)) {
+      return res.status(400).json({ error: "Invalid filename." });
+    }
+
+    const promptsDir = path.join(__dirname, 'prompts');
+    const filePath = path.join(promptsDir, filename);
+
+    if (!fs.existsSync(filePath)) {
+      return res.status(404).json({ error: "Prompt file not found." });
+    }
+
+    // ---- Versioning logic ----
+    const historyDir = path.join(promptsDir, 'history');
+    if (!fs.existsSync(historyDir)) fs.mkdirSync(historyDir);
+
+    // Load current metadata
+    const metadataPath = path.join(promptsDir, 'metadata.json');
+    let metadata = {};
+    if (fs.existsSync(metadataPath)) {
+      metadata = JSON.parse(fs.readFileSync(metadataPath, 'utf-8'));
+    }
+
+    // Build version filename (e.g., prompt1_v20240625T112800.txt)
+    const ts = new Date().toISOString().replace(/[-:.]/g, "").slice(0,15); // e.g., 20250625T112830
+    const versionFilename = filename.replace(/\.txt$/, `_v${ts}.txt`);
+    const versionFilePath = path.join(historyDir, versionFilename);
+
+    // Copy current version to history
+    fs.copyFileSync(filePath, versionFilePath);
+
+    // Add to metadata history
+    if (!metadata[filename]) metadata[filename] = { history: [] };
+    if (!metadata[filename].history) metadata[filename].history = [];
+    metadata[filename].history.unshift({
+      filename: versionFilename,
+      timestamp: new Date().toISOString()
+    });
+
+    // Save new prompt content to file
+    fs.writeFileSync(filePath, newContent, 'utf-8');
+
+    // 🚨 Data loss safeguard: Prevent saving if too few prompts in metadata
+if (Object.keys(metadata).length < 4) {
+  console.error("WARNING: Attempting to save metadata.json with less than 4 prompts. Data loss risk!");
+  return res.status(500).json({ error: "Too few prompts! Refusing to save." });
+}
+
+    // Write updated metadata
+    fs.writeFileSync(metadataPath, JSON.stringify(metadata, null, 2), 'utf-8');
+
+    return res.json({ success: true, backup: versionFilename });
+  } catch (err) {
+    console.error("❌ Error saving prompt file:", err.message);
+    return res.status(500).json({ error: "Failed to save prompt file." });
+  }
+});
+
+// --- Delete a prompt file and its metadata entry ---
+app.delete('/api/prompts/:filename', (req, res) => {
+  const adminSecret = req.headers["x-admin-secret"];
+  if (adminSecret !== process.env.ADMIN_SECRET) {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+
+  const filename = req.params.filename;
+  if (!/^[\w\-\.]+\.txt$/.test(filename)) {
+    return res.status(400).json({ error: "Invalid filename." });
+  }
+
+  const promptsDir = path.join(__dirname, 'prompts');
+  const filePath = path.join(promptsDir, filename);
+  const metadataPath = path.join(promptsDir, 'metadata.json');
+
+  // Delete the file if it exists
+  if (fs.existsSync(filePath)) {
+    fs.unlinkSync(filePath);
+  }
+
+  // Update metadata.json
+  let metadata = {};
+  if (fs.existsSync(metadataPath)) {
+    metadata = JSON.parse(fs.readFileSync(metadataPath, 'utf-8'));
+    delete metadata[filename];
+    fs.writeFileSync(metadataPath, JSON.stringify(metadata, null, 2), 'utf-8');
+  }
+
+  return res.json({ success: true });
+});
+
+
+// 👇 PASTE THE NEW TAGS ENDPOINT BELOW THIS LINE
+
+app.post('/api/prompts/:filename/tags', express.json(), (req, res) => {
+  const adminSecret = req.headers['x-admin-secret'];
+  if (adminSecret !== process.env.ADMIN_SECRET) {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+
+  const filename = req.params.filename;
+  const tags = req.body.tags;
+
+  if (!Array.isArray(tags)) {
+    return res.status(400).json({ error: "Tags must be an array" });
+  }
+
+  const promptsDir = path.join(__dirname, 'prompts');
+  const metaPath = path.join(promptsDir, 'metadata.json');
+
+  let metadata = {};
+  try {
+    metadata = JSON.parse(fs.readFileSync(metaPath, 'utf8'));
+  } catch (e) {
+    return res.status(500).json({ error: "Failed to read metadata" });
+  }
+
+  // If prompt entry doesn't exist in metadata, create it
+  if (!metadata[filename]) {
+    metadata[filename] = { tags: [], history: [] };
+  }
+  metadata[filename].tags = tags;
+
+  try {
+    fs.writeFileSync(metaPath, JSON.stringify(metadata, null, 2), 'utf8');
+  } catch (e) {
+    return res.status(500).json({ error: "Failed to write metadata" });
+  }
+
+  res.json({ success: true });
+});
+
 // ------ EXPORT DOCX ENDPOINT -------
 app.post("/export-docx", express.json(), async (req, res) => {
   try {
@@ -310,7 +545,23 @@ app.post("/export-pptx", express.json(), async (req, res) => {
     console.error("❌ Route error:", err);
     res.status(500).json({ error: "Failed to export PowerPoint presentation." });
   }
+
+  try {
+    fs.writeFileSync(metadataPath, JSON.stringify(metadata, null, 2), 'utf8');
+
+    // Create an empty prompt file if it doesn't exist yet
+    const newPromptFilePath = path.join(promptsDir, filename);
+    if (!fs.existsSync(newPromptFilePath)) {
+      fs.writeFileSync(newPromptFilePath, "", 'utf8');
+    }
+
+    return res.json({ success: true });
+  } catch (err) {
+    console.error("Error saving new prompt metadata:", err);
+    return res.status(500).json({ error: "Failed to save new prompt metadata" });
+  }
 });
+
 
 server.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

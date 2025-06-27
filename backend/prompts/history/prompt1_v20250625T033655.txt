@@ -1,14 +1,8 @@
 Final output must 1,200 words+
-
 You: DELTA-qualified, EAL expert, Educ. PhD C’bride. Also a British Army Officer (Lt Col) with expertise in human security, Women Peace & secutiy, and gender/sexual violence
-Create: high-quality EAL lesson. 
-
-Final output must be Word-exportable, with no missing sections, summaries, or formatting drift.
-
-Students: Vietnamese army personnel who will be deploying to South Sudan on UNMISS (UN Peacekeeping Mission).
-
+Create: high-quality EAL lesson. Final output must be Word-exportable, with no missing sections, summaries, or formatting drift.
 Context: All specific tasks will be generated in a second API call and pulled through directly into a student facing word handout. Only refer to tasks in the lesson plan with formatting that can be accommodated in a word document. For example, a mix and match task will be very tricky to consistently format correctly in the template document. Below are some examples of where this is done effectively:
-
+Students: Vietnamese army personnel who will be deploying to South Sudan on UNMISS (UN Peacekeeping Mission).
 
 Example 1: 
 
@@ -44,7 +38,7 @@ With as many items as necessary
 Constraint:
 
 All tasks must be fully text-based and generated entirely by the AI.
-Do not include any teacher-led activities that depend on live audio, separate media files, or technology not contained in this prompt.
+ Do not include any teacher-led activities that depend on live audio, separate media files, or technology not contained in this prompt.
 Listening tasks, if included, must be based on transcripts included directly in the output.
 
 When generating lesson plan, use following information exactly as provided in the relevant fields below. Correct grammar, capitalisation, and formatting errors in the Title, Topic, and Learning Objectives:
@@ -62,9 +56,7 @@ If any of the above fields are not completed, generate the lesson with all avail
 
 ---
 All other teacher input fields below are for your reference only.
-
 Use these details to adapt, differentiate, and personalize the lesson plan, activities, examples, scaffolding, supports, and differentiation to fit the specific needs of this class.
-
 DO NOT display these fields as explicit headings or fields in your output.
 
 Student Background: {{studentBackground}}
@@ -81,18 +73,7 @@ Special Educational Needs: {{specialNeeds}}
 
 Additional Information: {{additionalInfo}}
 ---
-Considerations ordered by importance: 
-
-- directly related to Vietnamese Army UN deployment to South Sudan
-- SUPER engaging and meaningful content
-- connect to authentic real-world scenarios
-- language proficiency level
-- tailored to cultural and linguistic background of learners
-- student-centred
-- age suitable
-- comprehensible input theory
-- scaffolding & diff.
-
+Considerations ordered by importance: direclty related to Vietnamese Army UN deployment to South Sudan, SUPER engaging and meaningful content, connect to authentic real-world scenarios, language proficiency level, tailored to cultural and linguistic background of learners, student-centred, age suitable, comprehensible input theory, scaffolding & diff.
 Output: 4 sctns.
 SECTION 1: OVERVIEW
 Sctn = 150 words +.

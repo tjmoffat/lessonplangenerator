@@ -36,7 +36,6 @@
   color: #176bff;
 }
 
-
 /* Reset & base styles */
 body {
   font-family: 'Inter', Arial, sans-serif;
@@ -47,7 +46,7 @@ body {
 }
 
 .container {
-  max-width: 980px;
+  max-width: 700px;
   margin: 36px auto 36px auto;
   background: #fff;
   border-radius: 18px;
@@ -117,7 +116,7 @@ body {
 
 label {
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   color: #232c43;
   margin-bottom: 0;
 }
@@ -129,7 +128,7 @@ label {
 
 input[type="text"], input[type="number"], select, textarea {
   font-family: inherit;
-  font-size: 1.08rem;
+  font-size: 0.95rem;
   padding: 13px 16px;
   border: 1.5px solid #c8d2eb;
   border-radius: 9px;
@@ -167,13 +166,13 @@ textarea::placeholder {
 textarea {
   min-height: 54px;
   resize: vertical;
-  font-size: 1.08rem;
+  font-size: 0.95rem;
   font-family: inherit;
   background: #f6f9fe;
 }
 .char-counter {
   color: #b7bdd1;
-  font-size: 0.99rem;
+  font-size: 0.85rem;
   margin-top: 1px;
   align-self: flex-end;
 }
@@ -380,3 +379,106 @@ button.generate-btn .spinner {
   from { opacity: 0; transform: translateY(-8px);}
   to { opacity: 1; transform: none;}
 }
+
+/* ... All your existing styles up to ... */
+
+/* ========== AI LESSON LAB PROMPT MANAGER FIXES BELOW ========== */
+
+/* Prompt group container */
+.prompt-group {
+  width: 98%;
+  margin: 0 auto 2rem auto;
+  max-width: 680px;
+  min-width: 280px;
+  padding: 0;
+  box-sizing: border-box;
+  border: 1.5px solid #d1d5db;
+  border-radius: 12px;
+  background: #fafbfc;
+}
+
+/* Accordion header (group label) */
+.accordion-header {
+  background: #eef8fc;
+  border: none;
+  font-weight: bold;
+  width: 100%;
+  margin: 0 0 1rem 0;
+  display: block;
+  box-sizing: border-box;
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+  font-size: 1.2rem;
+  border-radius: 9px;
+  text-align: left;
+}
+
+/* Prompt file-list style buttons */
+#prompt-list button {
+  display: block !important;
+  width: auto !important;
+  min-width: 140px !important;
+  max-width: 96% !important;
+  margin: 2px 0 2px 0 !important;
+  padding: 8px 18px !important;
+  font-size: 1.08rem !important;
+  border-radius: 6px !important;
+  background: #f7f9fc !important;
+  border: 1px solid #e0e4ea !important;
+  font-weight: 500 !important;
+  text-align: left !important;
+  transition: background 0.13s !important, border 0.13s !important;
+  box-sizing: border-box !important;
+  cursor: pointer;
+}
+#prompt-list button:hover {
+  background: #eaf6fb !important;
+  border: 1px solid #176bff !important;
+}
+
+/* Search and custom tag input boxes fit container, no overflow */
+#search,
+#custom-tag-input {
+  width: 97% !important;
+  max-width: 97% !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+  margin-bottom: 1rem !important;
+  display: block;
+}
+
+/* Editor flex layout */
+.inline-editor {
+  flex-wrap: wrap;
+  gap: 30px;
+}
+.editor-left, .editor-right {
+  max-width: 100%;
+}
+
+/* Responsive for mobile/small screens */
+@media (max-width: 850px) {
+  .container {
+    max-width: 99vw !important;
+    padding: 12px 2vw 24px 2vw !important;
+  }
+  .inline-editor {
+    flex-direction: column;
+    gap: 12px;
+  }
+  #search,
+  #custom-tag-input {
+    min-width: 0 !important;
+    width: 98vw !important;
+    max-width: 98vw !important;
+  }
+  .editor-left, .editor-right {
+    min-width: 0 !important;
+    max-width: 99vw !important;
+  }
+  .prompt-group {
+    max-width: 99vw !important;
+    width: 99vw !important;
+  }
+}
+

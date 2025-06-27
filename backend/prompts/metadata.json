@@ -1,26 +1,256 @@
-[
-  {
-    "filename": "prompt1.txt",
+{
+  "prompt1.txt": {
     "label": "Lesson Plan Prompt",
-    "tags": ["lesson", "planning", "call1"],
-    "component": "call1"
+    "tags": [
+      "Reading",
+      "60",
+      "B1 (Intermediate)",
+      "Upper Secondary (15–17)",
+      "Reading"
+    ],
+    "component": "call1",
+    "history": [
+      {
+        "filename": "prompt1_v20250627T014216.txt",
+        "timestamp": "2025-06-27T01:42:16.527Z"
+      },
+      {
+        "filename": "prompt1_v20250627T014215.txt",
+        "timestamp": "2025-06-27T01:42:15.100Z"
+      },
+      {
+        "filename": "prompt1_v20250627T014213.txt",
+        "timestamp": "2025-06-27T01:42:13.929Z"
+      },
+      {
+        "filename": "prompt1_v20250627T014207.txt",
+        "timestamp": "2025-06-27T01:42:07.593Z"
+      },
+      {
+        "filename": "prompt1_v20250627T014156.txt",
+        "timestamp": "2025-06-27T01:41:56.771Z"
+      },
+      {
+        "filename": "prompt1_v20250626T123235.txt",
+        "timestamp": "2025-06-26T12:32:35.297Z"
+      },
+      {
+        "filename": "prompt1_v20250626T123226.txt",
+        "timestamp": "2025-06-26T12:32:26.637Z"
+      },
+      {
+        "filename": "prompt1_v20250626T123217.txt",
+        "timestamp": "2025-06-26T12:32:17.079Z"
+      },
+      {
+        "filename": "prompt1_v20250626T104118.txt",
+        "timestamp": "2025-06-26T10:41:18.823Z"
+      },
+      {
+        "filename": "prompt1_v20250626T103722.txt",
+        "timestamp": "2025-06-26T10:37:22.255Z"
+      },
+      {
+        "filename": "prompt1_v20250626T103716.txt",
+        "timestamp": "2025-06-26T10:37:16.380Z"
+      },
+      {
+        "filename": "prompt1_v20250626T001857.txt",
+        "timestamp": "2025-06-26T00:18:57.466Z"
+      },
+      {
+        "filename": "prompt1_v20250625T234250.txt",
+        "timestamp": "2025-06-25T23:42:50.484Z"
+      },
+      {
+        "filename": "prompt1_v20250625T233649.txt",
+        "timestamp": "2025-06-25T23:36:49.218Z"
+      },
+      {
+        "filename": "prompt1_v20250625T212501.txt",
+        "timestamp": "2025-06-25T21:25:01.909Z"
+      },
+      {
+        "filename": "prompt1_v20250625T210326.txt",
+        "timestamp": "2025-06-25T21:03:26.377Z"
+      },
+      {
+        "filename": "prompt1_v20250625T205313.txt",
+        "timestamp": "2025-06-25T20:53:13.214Z"
+      },
+      {
+        "filename": "prompt1_v20250625T205228.txt",
+        "timestamp": "2025-06-25T20:52:28.021Z"
+      },
+      {
+        "filename": "prompt1_v20250625T195936.txt",
+        "timestamp": "2025-06-25T19:59:36.612Z"
+      },
+      {
+        "filename": "prompt1_v20250625T192117.txt",
+        "timestamp": "2025-06-25T19:21:17.431Z"
+      },
+      {
+        "filename": "prompt1_v20250625T045905.txt",
+        "timestamp": "2025-06-25T04:59:05.099Z"
+      },
+      {
+        "filename": "prompt1_v20250625T033655.txt",
+        "timestamp": "2025-06-25T03:36:55.221Z"
+      }
+    ]
   },
-  {
-    "filename": "prompt2.txt",
+  "prompt2.txt": {
     "label": "MFP + Reading Prompt",
-    "tags": ["mfp", "reading", "call2"],
-    "component": "call2"
+    "tags": [
+      "Reading",
+      "mfp",
+      "reading",
+      "call2"
+    ],
+    "component": "call2",
+    "history": [
+      {
+        "filename": "prompt2_v20250626T000803.txt",
+        "timestamp": "2025-06-26T00:08:03.476Z"
+      },
+      {
+        "filename": "prompt2_v20250625T235624.txt",
+        "timestamp": "2025-06-25T23:56:24.681Z"
+      },
+      {
+        "filename": "prompt2_v20250625T235613.txt",
+        "timestamp": "2025-06-25T23:56:13.937Z"
+      },
+      {
+        "filename": "prompt2_v20250625T234759.txt",
+        "timestamp": "2025-06-25T23:47:59.430Z"
+      },
+      {
+        "filename": "prompt2_v20250625T190947.txt",
+        "timestamp": "2025-06-25T19:09:47.737Z"
+      },
+      {
+        "filename": "prompt2_v20250625T045947.txt",
+        "timestamp": "2025-06-25T04:59:47.579Z"
+      }
+    ]
   },
-  {
-    "filename": "prompt3.txt",
+  "prompt3.txt": {
     "label": "Student Handout Prompt",
-    "tags": ["handout", "call3"],
-    "component": "call3"
+    "tags": [
+      "Reading",
+      "Reading",
+      "handout",
+      "call3"
+    ],
+    "component": "call3",
+    "history": [
+      {
+        "filename": "prompt3_v20250626T003348.txt",
+        "timestamp": "2025-06-26T00:33:48.178Z"
+      },
+      {
+        "filename": "prompt3_v20250626T002146.txt",
+        "timestamp": "2025-06-26T00:21:46.480Z"
+      },
+      {
+        "filename": "prompt3_v20250626T000920.txt",
+        "timestamp": "2025-06-26T00:09:20.020Z"
+      },
+      {
+        "filename": "prompt3_v20250626T000815.txt",
+        "timestamp": "2025-06-26T00:08:15.806Z"
+      },
+      {
+        "filename": "prompt3_v20250625T235718.txt",
+        "timestamp": "2025-06-25T23:57:18.217Z"
+      },
+      {
+        "filename": "prompt3_v20250625T235640.txt",
+        "timestamp": "2025-06-25T23:56:40.158Z"
+      },
+      {
+        "filename": "prompt3_v20250625T234849.txt",
+        "timestamp": "2025-06-25T23:48:49.635Z"
+      },
+      {
+        "filename": "prompt3_v20250625T191051.txt",
+        "timestamp": "2025-06-25T19:10:51.663Z"
+      },
+      {
+        "filename": "prompt3_v20250625T191004.txt",
+        "timestamp": "2025-06-25T19:10:04.454Z"
+      },
+      {
+        "filename": "prompt3_v20250625T050043.txt",
+        "timestamp": "2025-06-25T05:00:43.630Z"
+      }
+    ]
   },
-  {
-    "filename": "prompt4.txt",
+  "prompt4.txt": {
     "label": "Slide Deck Prompt",
-    "tags": ["slides", "call4"],
-    "component": "call4"
+    "tags": [
+      "Reading",
+      "60",
+      "Reading",
+      "slides",
+      "call4"
+    ],
+    "component": "call4",
+    "history": [
+      {
+        "filename": "prompt4_v20250626T003408.txt",
+        "timestamp": "2025-06-26T00:34:08.056Z"
+      },
+      {
+        "filename": "prompt4_v20250626T002201.txt",
+        "timestamp": "2025-06-26T00:22:01.459Z"
+      },
+      {
+        "filename": "prompt4_v20250626T000858.txt",
+        "timestamp": "2025-06-26T00:08:58.855Z"
+      },
+      {
+        "filename": "prompt4_v20250626T000827.txt",
+        "timestamp": "2025-06-26T00:08:27.864Z"
+      },
+      {
+        "filename": "prompt4_v20250625T235740.txt",
+        "timestamp": "2025-06-25T23:57:40.092Z"
+      },
+      {
+        "filename": "prompt4_v20250625T235651.txt",
+        "timestamp": "2025-06-25T23:56:51.973Z"
+      },
+      {
+        "filename": "prompt4_v20250625T234909.txt",
+        "timestamp": "2025-06-25T23:49:09.448Z"
+      },
+      {
+        "filename": "prompt4_v20250625T234823.txt",
+        "timestamp": "2025-06-25T23:48:23.750Z"
+      },
+      {
+        "filename": "prompt4_v20250625T191206.txt",
+        "timestamp": "2025-06-25T19:12:06.798Z"
+      },
+      {
+        "filename": "prompt4_v20250625T191145.txt",
+        "timestamp": "2025-06-25T19:11:45.920Z"
+      },
+      {
+        "filename": "prompt4_v20250625T191118.txt",
+        "timestamp": "2025-06-25T19:11:18.682Z"
+      },
+      {
+        "filename": "prompt4_v20250625T191025.txt",
+        "timestamp": "2025-06-25T19:10:25.005Z"
+      },
+      {
+        "filename": "prompt4_v20250625T050103.txt",
+        "timestamp": "2025-06-25T05:01:03.813Z"
+      }
+    ]
   }
-]
+}

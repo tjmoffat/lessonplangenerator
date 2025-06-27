@@ -42,4 +42,4 @@ Create a single printable student handout that matches all of the tasks in the L
 - Do NOT use plain text lists or manual indentation.
 - Ensure no Markdown artifacts like `*` or `_` appear in the output text (except for valid Markdown).
 
-When producing output, do NOT include raw Markdown syntax such as `*` or `_` characters in the visible text. Instead, format lists and headings properly so they appear as formatted text in a Word doc or HTML preview.
+When producing output, do NOT include raw Markdown syntax such as `*` or `_` characters in the visible text. Instead, format lists and headings properly so they appear as formatted text in a Word document or HTML preview.

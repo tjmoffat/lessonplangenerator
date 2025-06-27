@@ -191,4 +191,3 @@ List all steps to deliver lesson e.g. printing, classr. setup, tech., materials 
 When producing output, do NOT include raw Markdown syntax such as `*` or `_` characters in the visible text. Instead, format lists and headings properly so they appear as formatted text in a Word document or HTML preview.
 
 REMEMBER: final output MUST be 1,200 wds+. Your output must be a complete, fully filled-out lesson plan. Never output an empty template or only headings—always include full content for every field, paragraph, and list.
-

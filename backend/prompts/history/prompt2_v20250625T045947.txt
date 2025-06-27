@@ -139,7 +139,7 @@ The passage should:
     
 Do not write comprehension questions. Do not label or explain the text. This will be inserted into a handout later.
 
-Hard Condition: If the word count for the passage – which is based on the language level of learners - is not met, regenerate the passage until it is.
+Hard Condition: If the word count for the passage – based on the language level of learners - is not met, regenerate the passage until it is.
 
 Output Format
 Return the two parts using these exact markers:
