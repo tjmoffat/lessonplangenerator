@@ -16,7 +16,7 @@ const AUTOSAVE_DELAY = 900; // ms
 // --- Tag Categories (edit as you expand) ---
 const TAG_GROUPS = [
   {
-    label: "Primary Focus",
+    label: "Main Focus",
     options: [
       "Reading", "Writing", "Listening", "Speaking", "Grammar", "Vocabulary", "Pronunciation", "Functional Language"
     ]
@@ -26,7 +26,7 @@ const TAG_GROUPS = [
     options: ["30", "45", "60", "90", "120"]
   },
   {
-    label: "Language Level (CEFR)",
+    label: "Level (CEFR)",
     options: [
       "A1 (Beginner)", "A2 (Elementary)", "B1 (Intermediate)",
       "B2 (Upper-Intermediate)", "C1 (Advanced)", "C2 (Proficiency)"
@@ -35,7 +35,7 @@ const TAG_GROUPS = [
   {
     label: "Age Group",
     options: [
-      "Early Years (5–7)", "Primary (8–11)", "Lower Secondary (12–14)",
+      "Early Years (4–7)", "Primary (8–11)", "Lower Secondary (12–14)",
       "Upper Secondary (15–17)", "Adults (18+)"
     ]
   },

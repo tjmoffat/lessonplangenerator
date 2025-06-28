@@ -10,11 +10,11 @@
   <div class="container">
     <div class="header">
       <h1>Lesson Pilot</h1>
-      <p>Create professional, engaging lesson plans in seconds</p>
+      <p>Create professional, engaging lessons in seconds</p>
     </div>
     <div class="form-container">
       <form id="lessonForm" autocomplete="off">
-        <!-- Essentials Section -->
+        <!-- Lesson Setup Section -->
         <div class="section">
           <h2 class="section-title">
             <span class="section-logo">
@@ -26,15 +26,15 @@
               <circle cx="7" cy="13" r="1" fill="#176BFF"/>
               </svg>
             </span>
-            Essentials
+            Lesson Setup
           </h2>
           <div class="form-grid">
             <!-- Age Group -->
             <div class="form-group">
-              <label for="age" class="required-label">Age Group <span class="required">*</span></label>
+              <label for="age" class="required-label">Age Group </label>
               <select id="age" name="age" required>
                 <option value="">Select age group...</option>
-                <option value="5-7">Early Years (5–7)</option>
+                <option value="5-7">Early Years (4–7)</option>
                 <option value="8-11">Primary (8–11)</option>
                 <option value="12-14">Lower Secondary (12–14)</option>
                 <option value="15-17">Upper Secondary (15–17)</option>
@@ -43,13 +43,13 @@
             </div>
             <!-- Class Size -->
             <div class="form-group">
-              <label for="classSize" class="required-label">Class Size <span class="required">*</span></label>
+              <label for="classSize" class="required-label">Class Size </span></label>
               <input type="number" id="classSize" name="classSize" min="1" max="50" required placeholder=""/>
             </div>
-            <!-- Assessment Framework -->
+            <!-- Proficiency Scale -->
             <div class="form-group">
-              <label for="framework" class="required-label">Assessment Framework <span class="required">*</span></label>
-              <select id="framework" name="framework" required>
+              <label for="proficiencyScale" class="required-label">Proficiency Scale</label>
+              <select id="proficiencyScale" name="proficiencyScale" required>
                 <option value="">Select or type...</option>
                 <option value="cefr">CEFR (Common European Framework)</option>
                 <option value="cambridge">Cambridge English</option>
@@ -59,21 +59,35 @@
                 <option value="toefl">TOEFL Preparation</option>
                 <option value="other">Other</option>
               </select>
-              <input type="text" id="customFramework" name="customFramework" placeholder="Type framework..." style="display:none; margin-top:4px;"/>
+              <input
+                type="text"
+                id="customProficiencyScale"
+                name="customProficiencyScale"
+                placeholder="Type scale..."
+                style="display:none; margin-top:4px;"
+              />
             </div>
-            <!-- Language Level -->
+            <!--Level -->
+            <!-- Level -->
             <div class="form-group">
-              <label for="level" class="required-label">Language Level <span class="required">*</span></label>
+              <label for="level" class="required-label">Level</label>
               <select id="level" name="level" required>
                 <option value="">Select level...</option>
+                <!-- Options will be populated dynamically by JavaScript -->
               </select>
-              <input type="text" id="customLevel" name="customLevel" placeholder="Type level..." style="display:none; margin-top:4px;"/>
+              <input
+                type="text"
+                id="customLevel"
+                name="customLevel"
+                placeholder="Type level..."
+                style="display:none; margin-top:4px;"
+              />
             </div>
-            <!-- Primary Focus -->
+            <!-- Main Focus -->
               <div class="form-group">
-                <label for="primaryFocus">Primary Focus</label>
-                <select id="primaryFocus" name="primaryFocus">
-                  <option value="">Select primary focus...</option>
+                <label for="mainFocus">Main Focus</label>
+                <select id="mainFocus" name="mainFocus">
+                  <option value="">Select main focus...</option>
                   <option value="reading">Reading</option>
                   <option value="writing">Writing</option>
                   <option value="listening">Listening</option>
@@ -87,25 +101,12 @@
               <input type="number" id="duration" name="duration" min="30" max="120" placeholder=""/>
             </div>
             <!-- Topic -->
-            <div class="form-group">
-              <label for="topic">Topic</label>
-              <input type="text" id="topic" name="topic" maxlength="100" placeholder="Food, Daily Routines, Holidays"/>
+            <div class="form-group form-group-wide">
+                <label for="topic">Topic (Optional)</label>
+                <input type="text" id="topic" name="topic" maxlength="100" placeholder="Food, Daily Routines, Holidays" />
               <div class="char-counter">0/100 characters</div>
             </div>
-            <!-- Student Background-->
-            <div class="form-group">
-              <label for="studentBackground" class="required-label">Student Background</label>
-              <input
-                type="text"
-                id="studentBackground"
-                name="studentBackground"
-                maxlength="100"
-                placeholder="Students are all native Mandarin speakers"
-                required
-                style="width: 100%; box-sizing: border-box;"
-              />
-              <div class="char-counter">0/100 characters</div>
-            </div>
+          
             <!-- Secondary Focus hidden -->
             <div class="form-group" style="display: none;">
                 <label for="secondaryFocus">Secondary Focus</label>
@@ -152,6 +153,19 @@
                 <label for="targetVocabulary">Target Vocabulary</label>
                 <textarea id="targetVocabulary" name="targetVocabulary" maxlength="300" placeholder="Airport, departure, luggage, etc."></textarea>
                 <div class="char-counter">0/300 characters</div>
+              </div>
+              <!-- Cultural & Linguistic Background -->
+              <div class="form-group form-group-wide">
+                <label for="culturalBackground" class="required-label">Cultural & Linguistic Background</label>
+                <textarea
+                  id="culturalBackground"
+                  name="culturalBackground"
+                  maxlength="200"
+                  placeholder="Students are all native Mandarin speakers"
+                  required
+                  rows="3"
+                ></textarea>
+                <div class="char-counter">0/200 characters</div>
               </div>
               <!-- Context -->
               <div class="form-group form-group-wide">

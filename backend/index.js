@@ -6,6 +6,7 @@ const { loadPrompt } = require('./utils/promptLoader'); // For loading prompt fi
 const PPTXGenJS = require("pptxgenjs");
 const path = require("path");
 const fs = require("fs"); // <-- Needed for reading and writing files
+const exportOnePageLessonPlanRouter = require("./routes/export_one_page_lesson_plan");
 
 const OpenAI = require('openai'); // OpenAI API client library
 const { Document, Packer, Paragraph, HeadingLevel } = require("docx");
@@ -50,6 +51,8 @@ const openai = new OpenAI({
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+app.use("/export-one-page-lesson-plan", exportOnePageLessonPlanRouter);
 
 // Utility: Call OpenAI GPT-4o with max_tokens set to 8000
 async function callGPT(prompt, model = "gpt-4o") {
@@ -155,9 +158,9 @@ app.get('/test-prompt', (req, res) => {
   const variables = {
     title: "The World of Animals",
     topic: "Animals",
-    primaryFocus: "Vocabulary",
+    mainFocus: "Vocabulary",
     secondaryFocus: "Speaking",
-    framework: "CEFR",
+    proficiencyScale: "CEFR",
     level: "A2",
     ageGroup: "10-12",
     classSize: "16",
@@ -561,6 +564,10 @@ app.post("/export-pptx", express.json(), async (req, res) => {
     return res.status(500).json({ error: "Failed to save new prompt metadata" });
   }
 });
+
+// ---- EXPORT ONE PAGE LESSON PLAN DOCX (NEW ENDPOINT) ----
+const PizZip = require("pizzip");
+const Docxtemplater = require("docxtemplater");
 
 
 server.listen(PORT, () => {

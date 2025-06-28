@@ -1,65 +1,65 @@
 document.addEventListener('DOMContentLoaded', function() {
-  // Utility to populate Language Level options based on Assessment Framework
+  // Utility to populate Language Level options based on Proficiency Scale
   function updateLevelOptions() {
-    const frameworkSelect = document.getElementById('framework');
+    const scaleSelect = document.getElementById('proficiencyScale');
     const levelSelect = document.getElementById('level');
-    if (!frameworkSelect || !levelSelect) return;
-    if (frameworkSelect.value === 'other') return; // skip for custom
+    if (!scaleSelect || !levelSelect) return;
+    if (scaleSelect.value === 'other') return; // skip for custom
 
     let options = [];
-    switch(frameworkSelect.value) {
+    switch (scaleSelect.value) {
       case 'cefr':
         options = [
-          {value: 'a1', text: 'A1 (Beginner)'},
-          {value: 'a2', text: 'A2 (Elementary)'},
-          {value: 'b1', text: 'B1 (Intermediate)'},
-          {value: 'b2', text: 'B2 (Upper-Intermediate)'},
-          {value: 'c1', text: 'C1 (Advanced)'},
-          {value: 'c2', text: 'C2 (Proficiency)'}
+          { value: 'a1', text: 'A1 (Beginner)' },
+          { value: 'a2', text: 'A2 (Elementary)' },
+          { value: 'b1', text: 'B1 (Intermediate)' },
+          { value: 'b2', text: 'B2 (Upper-Intermediate)' },
+          { value: 'c1', text: 'C1 (Advanced)' },
+          { value: 'c2', text: 'C2 (Proficiency)' }
         ]; break;
       case 'cambridge':
         options = [
-          {value: 'starters', text: 'Starters'},
-          {value: 'movers', text: 'Movers'},
-          {value: 'flyers', text: 'Flyers'},
-          {value: 'ket', text: 'KET'},
-          {value: 'pet', text: 'PET'},
-          {value: 'fce', text: 'FCE'},
-          {value: 'cae', text: 'CAE'}
+          { value: 'starters', text: 'Starters' },
+          { value: 'movers', text: 'Movers' },
+          { value: 'flyers', text: 'Flyers' },
+          { value: 'ket', text: 'KET' },
+          { value: 'pet', text: 'PET' },
+          { value: 'fce', text: 'FCE' },
+          { value: 'cae', text: 'CAE' }
         ]; break;
       case 'ielts':
         options = [
-          {value: 'band-3-4', text: 'Band 3–4 (Basic)'},
-          {value: 'band-5-6', text: 'Band 5–6 (Intermediate)'},
-          {value: 'band-6-7', text: 'Band 6.5–7.5 (Upper Intermediate–Advanced)'},
-          {value: 'band-8plus', text: 'Band 8+ (Proficient)'}
+          { value: 'band-3-4', text: 'Band 3–4 (Basic)' },
+          { value: 'band-5-6', text: 'Band 5–6 (Intermediate)' },
+          { value: 'band-6-7', text: 'Band 6.5–7.5 (Upper Intermediate–Advanced)' },
+          { value: 'band-8plus', text: 'Band 8+ (Proficient)' }
         ]; break;
       case 'igcse':
         options = [
-          {value: 'year-9', text: 'Year 9'},
-          {value: 'year-10', text: 'Year 10'},
-          {value: 'year-11', text: 'Year 11'}
+          { value: 'core', text: 'Core' },
+          { value: 'extended', text: 'Extended' }
         ]; break;
       case 'ib':
         options = [
-          {value: 'ib-sl', text: 'Standard Level'},
-          {value: 'ib-hl', text: 'Higher Level'}
+          { value: 'ib-sl', text: 'Standard Level' },
+          { value: 'ib-hl', text: 'Higher Level' }
         ]; break;
       case 'toefl':
         options = [
-          {value: 'toefl-basic', text: 'Basic (0–30)'},
-          {value: 'toefl-intermediate', text: 'Intermediate (31–60)'},
-          {value: 'toefl-advanced', text: 'Advanced (61–90)'},
-          {value: 'toefl-expert', text: 'Expert (91–120)'}
+          { value: 'toefl-basic', text: 'Basic (0–30)' },
+          { value: 'toefl-intermediate', text: 'Intermediate (31–60)' },
+          { value: 'toefl-advanced', text: 'Advanced (61–90)' },
+          { value: 'toefl-expert', text: 'Expert (91–120)' }
         ]; break;
       default:
         options = [];
     }
+
     // Clear and rebuild dropdown
     levelSelect.innerHTML = '';
     levelSelect.appendChild(new Option('Select level...', ''));
     options.forEach(opt => {
-      let option = document.createElement('option');
+      const option = document.createElement('option');
       option.value = opt.value;
       option.text = opt.text;
       levelSelect.appendChild(option);
@@ -77,23 +77,23 @@ document.addEventListener('DOMContentLoaded', function() {
     update();
   });
 
-  // Assessment Framework logic
-  const frameworkSelect = document.getElementById('framework');
-  const customFrameworkInput = document.getElementById('customFramework');
+  // Proficiency Scale logic
+  const scaleSelect = document.getElementById('proficiencyScale');
+  const customScaleInput = document.getElementById('customProficiencyScale');
   const customLevelInput = document.getElementById('customLevel');
   const levelSelect = document.getElementById('level');
 
-  frameworkSelect.addEventListener('change', function() {
-    if (frameworkSelect.value === 'other') {
-      customFrameworkInput.style.display = 'block';
-      customFrameworkInput.required = true;
+  scaleSelect.addEventListener('change', function() {
+    if (scaleSelect.value === 'other') {
+      customScaleInput.style.display = 'block';
+      customScaleInput.required = true;
       customLevelInput.style.display = 'block';
       customLevelInput.required = true;
       levelSelect.style.display = 'none';
     } else {
-      customFrameworkInput.style.display = 'none';
-      customFrameworkInput.required = false;
-      customFrameworkInput.value = '';
+      customScaleInput.style.display = 'none';
+      customScaleInput.required = false;
+      customScaleInput.value = '';
       customLevelInput.style.display = 'none';
       customLevelInput.required = false;
       customLevelInput.value = '';
